@@ -1,0 +1,8 @@
+--- STARTING VERIFICATION TESTS ---
+1. Logging in as Admin...
+--- TEST FAILED ---
+Request failed with status code 500
+{
+  "message": "Server error",
+  "error": "Operation `users.findOne()` buffering timed out after 10000ms"
+}
