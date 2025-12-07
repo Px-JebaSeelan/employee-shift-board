@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+
+// Warm up the backend on app load (handles Render cold starts)
+function BackendWarmup() {
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    fetch(`${apiUrl}/health`).catch(() => { });
+  }, []);
+  return null;
+}
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
@@ -46,6 +56,7 @@ function AppRoutes() {
 function App() {
   return (
     <AuthProvider>
+      <BackendWarmup />
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
