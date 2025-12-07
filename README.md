@@ -90,14 +90,9 @@ npm run dev
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:5000/api
 
-### Test Credentials
+### Getting Started
 
-After running `seed.js`:
-
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | hire-me@anshumat.org | HireMe@2025! |
-| Employee | john.doe@company.com | Employee@2025! |
+Use the **Sign Up** page to create a new account, or run `node seed.js` locally to populate test data.
 
 ---
 
