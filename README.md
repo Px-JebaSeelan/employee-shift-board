@@ -19,8 +19,8 @@ A full-stack shift management application for scheduling and managing employee w
 
 ## Live Demo
 
-- **Frontend:** [https://employee-shift-board.vercel.app](https://employee-shift-board.vercel.app)
-- **Backend API:** [https://employee-shift-board.onrender.com](https://employee-shift-board.onrender.com)
+- **Frontend:** [https://employee-shift-board0.vercel.app](https://employee-shift-board0.vercel.app)
+- **Backend API:** [https://employee-shift-board-api.onrender.com](https://employee-shift-board-api.onrender.com)
 
 ## Setup Instructions
 
