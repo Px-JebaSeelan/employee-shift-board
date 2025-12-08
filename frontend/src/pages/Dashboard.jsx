@@ -12,6 +12,7 @@ export default function Dashboard() {
     const [dateFilter, setDateFilter] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [form, setForm] = useState({ employee: '', date: '', start: '', end: '' });
+    const [showLogout, setShowLogout] = useState(false);
 
     const fetchShifts = useCallback(async () => {
         try {
@@ -64,6 +65,26 @@ export default function Dashboard() {
 
     return (
         <div className="min-h-screen bg-slate-50">
+            {showLogout && (
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-[100]" onClick={() => setShowLogout(false)}>
+                    <div className="bg-white rounded-2xl shadow-xl p-6 w-[90%] max-w-sm" onClick={e => e.stopPropagation()}>
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                <svg className="w-5 h-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                            </div>
+                            <div>
+                                <h3 className="font-semibold text-slate-800">Sign out?</h3>
+                                <p className="text-sm text-slate-500">You'll need to log in again</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-3">
+                            <button onClick={() => setShowLogout(false)} className="flex-1 py-2 px-4 border border-slate-200 text-slate-700 rounded-lg hover:bg-slate-50 transition">Cancel</button>
+                            <button onClick={logout} className="flex-1 py-2 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">Sign out</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Navbar */}
             <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
                 <div className="max-w-6xl mx-auto h-16 px-4 flex items-center justify-between">
@@ -80,7 +101,7 @@ export default function Dashboard() {
                             <div className="w-7 h-7 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">{initials(user?.name)}</div>
                             <div className="text-sm"><div className="font-medium">{user?.name}</div><div className="text-xs text-slate-500 capitalize">{user?.role}</div></div>
                         </div>
-                        <button onClick={logout} className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition">
+                        <button onClick={() => setShowLogout(true)} className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition">
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
                             Logout
                         </button>
